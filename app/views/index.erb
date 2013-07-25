@@ -1,12 +1,28 @@
 <div class="container">
-
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="/">Shitty News</a>
+        <ul class="nav">
+          <li><a href="#">submit</a></li>
+          <!-- <li><a href="#"></a></li> -->
+        </ul>
+        <% if logged_in? %>
+        <ul class="nav" id="log_in_out">
+           <li ><a href="/logout">logout</a></li>
+        </ul>
+        <% else %>
+        <ul class="nav" id="log_in_out">
+           <li ><a href="/login">login</a></li>
+        </ul>
+        <% end %>
+    </div>
+  </div>
   <div class="row">
-    <h1>Welcome to J news, bitch!</h1>
     <div class="span10 offset 2">
       <ol>
       <% if @posts %>
         <%@posts.each do |post|%>
-        <li><a href="<%=post.url%>"></a><%=post.title%></li><p><%=post.user.username%> | <%=post.comments.count%> comments</p>
+        <li><a href="http://<%=post.url%>"><%=post.title%></a></li><p><%=post.user.username%> | <%=post.comments.count%> comments</p>
         <% end %>
       <% end %>
       </ol>
